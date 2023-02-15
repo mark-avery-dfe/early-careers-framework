@@ -14,6 +14,18 @@ on:
         default: "18.18.x"
 
 jobs:
+  action_linting:
+    name: "Lint GitHub Actions"
+    env:
+      GOVUK_NOTIFY_API_KEY: Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Lint workflow files
+        uses: reviewdog/action-actionlint@v1
+
   ruby_linting:
     name: "Lint ruby"
     env:
@@ -21,7 +33,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         name: Checkout Code
 
       - name: Set up Ruby
@@ -42,7 +54,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         name: Checkout Code
 
       - name: Set up Node
@@ -65,7 +77,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         name: Checkout Code
 
       - name: Set up Ruby
@@ -87,7 +99,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         name: Checkout Code
 
       - name: Set up Ruby

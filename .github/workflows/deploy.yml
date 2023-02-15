@@ -67,6 +67,8 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: review
+    outputs:
+      url: ${{ steps.deploy.outputs.url }}
     steps:
       - uses: actions/checkout@v3
 
@@ -102,8 +104,8 @@ jobs:
       - uses: ./.github/actions/test-security
         id: zapscan-security-testing
         with:
-          url: ${{ steps.deploy.outputs.url }}
-          notifySlackUsers: ${{ github.event_name != 'pull_request' }}
+          url: ${{ needs.deploy_review.outputs.url }}
+          notify-slack-users: ${{ github.event_name != 'pull_request' }}
 
   run_api_performance_tests:
     name: Run API performance tests
