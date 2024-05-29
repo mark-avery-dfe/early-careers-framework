@@ -103,6 +103,10 @@ class Cohort < ApplicationRecord
     update!(payments_frozen_at: Time.zone.now)
   end
 
+  def freeze_payments!
+    update!(payments_frozen_at: Time.zone.now)
+  end
+
   # e.g. "2022"
   def to_param
     start_year.to_s
