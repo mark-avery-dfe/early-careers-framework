@@ -7,6 +7,12 @@ weight: 8
 
 If you have any questions or comments about these notes, please contact DfE via Slack or email.
 
+## 30 May 2024
+
+We've introduced the `previous_payments_frozen_cohort` attribute to the participant response in the API v3 [test (sandbox) environment](https://sb.manage-training-for-early-career-teachers.education.gov.uk/).
+
+This feature enables providers to identify participants who've migrated to a new cohort to continue their training, as payments for their original cohort were frozen. The value will indicate the cohort from which the participant transferred, such as "2021".
+
 ## 24 May 2024
 
 We’ve added the schedules and contract data for the 2024/25 intake of early career teachers and mentors to the [test (sandbox) environment](https://sb.manage-training-for-early-career-teachers.education.gov.uk/).
