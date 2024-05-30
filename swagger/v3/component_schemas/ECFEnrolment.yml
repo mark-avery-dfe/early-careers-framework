@@ -128,3 +128,8 @@ properties:
     format: date
     nullable: true
     example: "2021-04-19"
+  previous_payments_frozen_cohort:
+    description: The payments frozen cohort the participant transferred from
+    type: string
+    nullable: true
+    example: "2021"
