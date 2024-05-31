@@ -3298,11 +3298,10 @@
             "format": "date",
             "example": "2021-04-19"
           },
-          "previous_payments_frozen_cohort": {
-            "description": "The payments frozen cohort the participant transferred from",
-            "type": "string",
-            "nullable": true,
-            "example": "2021"
+          "cohort_changed_after_payments_frozen": {
+            "description": "Identify participants that migrated to a new cohort as payments were frozen on their original cohort",
+            "type": "boolean",
+            "example": true
           }
         }
       },
