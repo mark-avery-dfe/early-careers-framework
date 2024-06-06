@@ -25,7 +25,7 @@ module Schools
         end
 
         def next_step
-          appropriate_body_appointed? ? :appropriate_body_type : :complete
+          :complete
         end
       end
     end

@@ -439,20 +439,16 @@ RSpec.feature "Schools should be able to choose their programme", type: :feature
 
       when_i_choose_yes
       and_i_click_continue
-      then_i_am_taken_to_the_appropriate_body_type_page
+      then_i_am_taken_to_the_select_teaching_school_hubs_selection_page
 
-      when_i_choose_local_authority
-      and_i_click_continue
-      then_i_am_taken_to_the_local_authorities_selection_page
-
-      when_i_fill_appropriate_body_with @local_authorities.first.name
+      when_i_fill_appropriate_body_with @teaching_school_hubs.first.name
       and_i_click_continue
       then_i_am_taken_to_the_complete_page
       and_i_dont_see_the_tell_us_appropriate_body_copy
 
       when_i_click_on_the_return_to_your_training_link
       then_i_am_taken_to_the_manage_your_training_page
-      and_i_see_appropriate_body @local_authorities.first.name
+      and_i_see_appropriate_body @teaching_school_hubs.first.name
     end
 
     scenario "A school chooses to appoint a national organisation as appropriate body" do

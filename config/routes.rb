@@ -659,6 +659,7 @@ Rails.application.routes.draw do
       scope "cohorts/:cohort_id" do
         wizard_scope :cohort_setup, path: :setup do
           get "/", to: "cohort_setup#show", as: :start, step: :what_we_need
+          appropriate_body_selection_routes :cohort_setup
         end
       end
 

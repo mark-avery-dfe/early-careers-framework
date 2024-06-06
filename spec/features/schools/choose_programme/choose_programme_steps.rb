@@ -123,6 +123,10 @@ module ChooseProgrammeSteps
     expect(page).to have_content("Which national appropriate body have you appointed?")
   end
 
+  def then_i_am_taken_to_the_select_teaching_school_hubs_selection_page
+    expect(page).to have_content("Which teaching school hub have you appointed?")
+  end
+
   def then_i_see_black_lp_and_dp_names
     expect(page).to have_summary_row("Lead provider", "")
     expect(page).to have_summary_row("Delivery partner", "")

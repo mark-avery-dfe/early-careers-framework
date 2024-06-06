@@ -2,6 +2,7 @@
 
 module Schools
   class CohortSetupController < BaseController
+    include AppropriateBodySelection::Controller
     skip_before_action :redirect_to_setup_cohort
     before_action :initialize_wizard
     before_action :data_check
@@ -16,16 +17,42 @@ module Schools
     def update
       if wizard.valid?
         wizard.save!
-        redirect_to wizard.next_step_path
+        if wizard.next_step == :appropriate_body_appointed
+          start_appropriate_body_selection
+        else
+          redirect_to wizard.next_step_path
+        end
       else
         track_validation_error(wizard.form)
         render wizard.current_step
       end
     end
 
+    # def set_appropriate_body
+    #   start_appropriate_body_selection
+    # end
+
     helper_method :wizard_back_link_path
 
   private
+
+    def start_appropriate_body_selection
+      super from_path: url_for(action: :show, step: wizard.current_step),
+            submit_action: :save_appropriate_body,
+            school:,
+            show_different_ab_for_ect_message: true,
+            ask_appointed: true
+    end
+
+    def save_appropriate_body
+      data_store.set(:appropriate_body_appointed, @appropriate_body_form.body_appointed)
+      data_store.set(:appropriate_body_id, @appropriate_body_form.body_id)
+      # wizard.set_current_step(:appropriate_body)
+      # update
+      # wizard.save!
+
+      redirect_to wizard.next_step_path
+    end
 
     def abort_path
       schools_dashboard_path(school_id: school.slug)
@@ -48,7 +75,7 @@ module Schools
         wizard.changing_answer(params["changing_answer"] == "1")
         wizard.update_history
       end
-    rescue Wizard::AlreadyInitialised, Wizard::InvalidStep
+    rescue Wizard::AlreadyInitialised, Wizard::InvalidStep => e
       remove_session_data
       redirect_to abort_path
     end
